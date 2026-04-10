@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyless - Smart Key Access for Dealerships</title>
+<meta name="description" content="Eliminate the 9-minute key retrieval. Keyless smart lockboxes mount on vehicle windows. Tap. Unlock. Sell. Patent pending.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#06080F;--card:#111827;--accent:#00E4B8;--ag:rgba(0,228,184,0.15);--t:#F0F2F5;--ts:#7A8BA7;--td:#3A4A5C;--danger:#E8364E;--border:#1E293B;--f:'Outfit',sans-serif;--m:'Space Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t);font-family:var(--f);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(0,228,184,.3),0 0 60px rgba(0,228,184,.1)}50%{box-shadow:0 0 30px rgba(0,228,184,.5),0 0 80px rgba(0,228,184,.15)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.rv.v{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-40px);transition:opacity .8s,transform .8s}.rl.v{opacity:1;transform:translateX(0)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(6,8,15,.8);border-bottom:1px solid rgba(30,41,59,.5)}
+.logo{font-family:var(--m);font-size:18px;font-weight:700;letter-spacing:4px;text-transform:uppercase}.logo span{color:var(--accent)}
+.nav-cta{padding:10px 24px;background:0;color:var(--accent);border:1px solid var(--accent);border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .3s;font-family:var(--f);cursor:pointer;display:inline-block}
+.nav-cta:hover{background:var(--accent);color:var(--bg)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;background:radial-gradient(ellipse at 50% 40%,rgba(17,24,39,.6) 0%,var(--bg) 70%)}
+.hero::before{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(0,228,184,.04) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.15;max-width:800px;letter-spacing:-1px;animation:fadeInUp .8s ease .3s both}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--ts);margin-top:24px;max-width:600px;animation:fadeInUp .8s ease .6s both}
+.hero-cta{display:inline-block;margin-top:48px;padding:18px 48px;background:var(--accent);color:var(--bg);font-size:16px;font-weight:700;border-radius:100px;text-decoration:none;animation:fadeInUp .8s ease .9s both,pulse 3s ease-in-out 2s infinite;transition:transform .2s,box-shadow .2s;font-family:var(--f);letter-spacing:.5px;cursor:pointer}
+.hero-cta:hover{transform:scale(1.04)}
+.hero-patent{margin-top:24px;font-size:13px;color:var(--td);font-family:var(--m);letter-spacing:1px;animation:fadeIn .8s ease 1.2s both}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);animation:fadeIn .8s ease 2s both,bounce 2s ease-in-out 2.5s infinite;color:var(--td);font-size:24px}
+section{padding:120px 24px;max-width:1100px;margin:0 auto}
+.sl{font-family:var(--m);font-size:12px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.st{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.5px;line-height:1.2;margin-bottom:16px}
+.st .a{color:var(--accent)}.st .d{color:var(--danger)}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:64px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 32px;text-align:center;transition:border-color .3s,transform .3s}
+.sc:hover{border-color:rgba(0,228,184,.3);transform:translateY(-4px)}
+.sn{font-size:clamp(40px,5vw,64px);font-weight:900;font-family:var(--m);margin-bottom:8px}
+.sn.a{color:var(--accent)}.sn.d{color:var(--danger)}
+.slb{font-size:15px;font-weight:600;margin-bottom:8px}
+.ssb{font-size:13px;color:var(--td)}
+.pq{font-size:18px;color:var(--ts);font-style:italic;text-align:center;max-width:700px;margin:0 auto;line-height:1.7;padding:32px 0;border-top:1px solid var(--border)}
+.stg{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-bottom:64px}
+.stp{text-align:center}
+.si{width:72px;height:72px;margin:0 auto 24px;border-radius:20px;background:var(--ag);border:1px solid rgba(0,228,184,.2);display:flex;align-items:center;justify-content:center}
+.si svg{width:32px;height:32px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.snm{font-family:var(--m);font-size:13px;color:var(--accent);letter-spacing:2px;margin-bottom:12px}
+.stp h3{font-size:24px;font-weight:800;margin-bottom:12px;letter-spacing:-.5px}
+.stp p{font-size:15px;color:var(--ts);line-height:1.6}
+.solc{text-align:center;font-size:17px;color:var(--ts);max-width:640px;margin:0 auto;padding-top:32px;border-top:1px solid var(--border);line-height:1.7}
+.fg{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:border-color .3s,transform .3s}
+.fc:hover{border-color:rgba(0,228,184,.3);transform:translateY(-2px)}
+.fi{width:40px;height:40px;border-radius:10px;background:var(--ag);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.fi svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fc h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.fc p{font-size:14px;color:var(--ts);line-height:1.6}
+.sly{display:flex;flex-direction:column;gap:24px;margin-bottom:48px}
+.sl2{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 16px 16px 0;padding:32px 40px}
+.sl2 h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--accent)}
+.sl2 p{font-size:15px;color:var(--ts);line-height:1.7}
+.stl{text-align:center;font-size:clamp(18px,2.5vw,24px);font-weight:700;color:var(--accent);padding:32px 0;letter-spacing:-.3px}
+.fs{max-width:700px}
+.ft{font-size:clamp(17px,2vw,20px);line-height:1.8;color:var(--ts);margin-bottom:24px}
+.fsg{font-size:16px;color:var(--td);margin-top:40px;padding-top:24px;border-top:1px solid var(--border)}
+.fsg strong{color:var(--t)}
+.cs{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:80px 40px;max-width:800px;margin:0 auto 80px}
+.cs h2{font-size:clamp(28px,3.5vw,40px);font-weight:800;margin-bottom:16px;letter-spacing:-.5px}
+.cs .of{font-size:20px;color:var(--accent);font-weight:600;margin-bottom:40px}
+.cb{display:inline-block;padding:20px 56px;background:var(--accent);color:var(--bg);font-size:17px;font-weight:700;border-radius:100px;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:var(--f);letter-spacing:.5px;animation:pulse 3s ease-in-out infinite;cursor:pointer}
+.cb:hover{transform:scale(1.04)}
+.ce{margin-top:20px;font-size:14px;color:var(--td)}
+.ce a{color:var(--ts);text-decoration:none}.ce a:hover{color:var(--accent)}
+footer{padding:40px 24px;text-align:center;border-top:1px solid var(--border);max-width:1100px;margin:0 auto}
+.fr{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-size:13px;color:var(--td);font-family:var(--m);letter-spacing:.5px}
+.fr a{color:var(--td);text-decoration:none;transition:color .2s}.fr a:hover{color:var(--accent)}
+.fb{margin-top:16px;font-size:12px;color:var(--td)}
+.dv{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);max-width:1100px;margin:0 auto}
+@media(max-width:768px){
+nav{padding:16px 20px}.logo{font-size:15px;letter-spacing:3px}.nav-cta{padding:8px 18px;font-size:13px}
+section{padding:80px 20px}.sg{grid-template-columns:1fr;gap:16px}.sc{padding:32px 24px}
+.stg{grid-template-columns:1fr;gap:32px}.fg{grid-template-columns:1fr}
+.cs{padding:60px 24px;margin:0 20px 60px}.cb{display:block;width:100%;text-align:center}
+.hero-cta{display:block;width:calc(100% - 48px);max-width:400px;text-align:center}
+.fr{flex-direction:column;gap:8px}.sl2{padding:24px}
+}
+</style>
+</head>
+<body>
+<nav><div class="logo">KEYLESS<span>.</span></div><a class="nav-cta cta-trigger">Schedule a Demo</a></nav>
+
+<section class="hero">
+<h1>Every minute your customer waits for keys is a minute closer to walking away.</h1>
+<p class="hero-sub">Keyless eliminates the 9-minute key retrieval. Tap. Unlock. Sell.</p>
+<a class="hero-cta cta-trigger">Schedule a Demo</a>
+<p class="hero-patent">Patent Pending &middot; USPTO #64/018,898</p>
+<div class="scroll-hint">&#8964;</div>
+</section>
+<div class="dv"></div>
+
+<section>
+<div class="rv"><p class="sl">The Problem</p><h2 class="st">The <span class="d">$49,400</span> Problem Nobody Tracks</h2></div>
+<div class="sg">
+<div class="sc rv" style="transition-delay:.1s"><div class="sn a" data-count="time" data-target="566">0:00</div><div class="slb">Average key retrieval time</div><div class="ssb">Timed across 3 Central Florida dealerships</div></div>
+<div class="sc rv" style="transition-delay:.2s"><div class="sn d" data-count="decimal" data-target="3.2">0</div><div class="slb">Lost selling hours per day</div><div class="ssb">20 retrievals x 9.5 minutes each</div></div>
+<div class="sc rv" style="transition-delay:.3s"><div class="sn d" data-count="money" data-target="49400">$0</div><div class="slb">Annual cost per store</div><div class="ssb">988 hours x $50/hr loaded salesperson cost</div></div>
+</div>
+<p class="pq rv">We watched a customer walk away after waiting 10 minutes for keys at a Central Florida dealership. The salesperson never came back.</p>
+</section>
+<div class="dv"></div>
+
+<section>
+<div class="rv"><p class="sl">The Solution</p><h2 class="st"><span class="a">3 Seconds</span> to the Key</h2></div>
+<div class="stg">
+<div class="stp rv" style="transition-delay:.1s"><div class="si"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/><path d="M9 6C9 6 12 3 15 6" opacity=".5"/><path d="M7 4C7 4 12 0 17 4" opacity=".3"/></svg></div><p class="snm">STEP 01</p><h3>Tap</h3><p>Salesperson taps their phone near the lockbox on the vehicle window.</p></div>
+<div class="stp rv" style="transition-delay:.2s"><div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg></div><p class="snm">STEP 02</p><h3>Unlock</h3><p>BLE authenticated unlock in under 3 seconds. AES-128 encrypted.</p></div>
+<div class="stp rv" style="transition-delay:.3s"><div class="si"><svg viewBox="0 0 24 24"><path d="M15.5 2.5L14 10l6.5-2L11 22l1.5-7.5L6 17l9.5-14.5z"/></svg></div><p class="snm">STEP 03</p><h3>Sell</h3><p>Customer sees the key instantly. No waiting. No walking. No lost momentum.</p></div>
+</div>
+<p class="solc rv">The lockbox lives on the vehicle. The key is always where the car is. Your salesperson never leaves the customer's side.</p>
+</section>
+<div class="dv"></div>
+
+<section>
+<div class="rv"><p class="sl">The Platform</p><h2 class="st">Your Entire Lot. <span class="a">One Dashboard.</span></h2></div>
+<div class="fg">
+<div class="fc rv" style="transition-delay:.05s"><div class="fi"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h3>Real-Time Access Logs</h3><p>Every unlock, every user, every timestamp. Know exactly who accessed which vehicle and when.</p></div>
+<div class="fc rv" style="transition-delay:.1s"><div class="fi"><svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div><h3>Test Drive Tracking</h3><p>GPS routes, duration, speed monitoring. Know where your cars go and how they're driven.</p></div>
+<div class="fc rv" style="transition-delay:.15s"><div class="fi"><svg viewBox="0 0 24 24"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg></div><h3>Battery Monitoring</h3><p>See charge levels across your fleet. Get alerts before a box goes dead.</p></div>
+<div class="fc rv" style="transition-delay:.2s"><div class="fi"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h3>Tamper Alerts</h3><p>Instant notification if someone attempts unauthorized access. After-hours alerts pushed to your phone.</p></div>
+<div class="fc rv" style="transition-delay:.25s"><div class="fi"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Team Performance</h3><p>See which salespeople are moving metal and which ones are sitting on leads.</p></div>
+<div class="fc rv" style="transition-delay:.3s"><div class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h3>Multi-Location Support</h3><p>One dashboard for every store in your group. Regional view for dealer groups.</p></div>
+</div>
+</section>
+<div class="dv"></div>
+
+<section>
+<div class="rv"><p class="sl">Security</p><h2 class="st">Three Layers of Security. <span class="a">Zero Extra Cost.</span></h2></div>
+<div class="sly">
+<div class="sl2 rl" style="transition-delay:.1s"><h3>Layer 1: The Vehicle</h3><p>The lockbox mounts to the window glass. The car's own door lock becomes the first security layer. Can't reach the box without unlocking the car.</p></div>
+<div class="sl2 rl" style="transition-delay:.25s"><h3>Layer 2: The Lockbox</h3><p>Sealed aluminum shell. No visible seams. No pry points. Hardened steel latch. Faraday cage blocks key fob relay attacks.</p></div>
+<div class="sl2 rl" style="transition-delay:.4s"><h3>Layer 3: The Encryption</h3><p>AES-128 rolling codes. Same encryption used by banks. New challenge every session. Replay attacks impossible.</p></div>
+</div>
+<p class="stl rv">The car protects the box. The box protects the key. The key starts the car.</p>
+</section>
+<div class="dv"></div>
+
+<section>
+<div class="rv fs"><p class="sl">The Founder</p><h2 class="st">Built by a Car Guy</h2>
+<p class="ft">I spent 8 years on the sales floor. I didn't read about this problem in a report. I lived it every day.</p>
+<p class="ft">I watched customers walk away while salespeople ran for keys. I watched top closers burn out from friction that had nothing to do with selling. I watched dealerships bleed money from a problem nobody was measuring.</p>
+<p class="ft">So I built the fix.</p>
+<p class="fsg"><strong>Ygor Taufner</strong> &mdash; Founder &amp; CEO, Keyless Technologies</p>
+</div>
+</section>
+<div class="dv"></div>
+
+<section style="padding-bottom:40px">
+<div class="cs rv">
+<h2>Ready to See It in Action?</h2>
+<p class="of">20 lockboxes. 30 days free. Zero risk.</p>
+<a class="cb cta-trigger">Schedule a Demo</a>
+<p class="ce">Or email <a href="/cdn-cgi/l/email-protection#b2cbd5ddc0f2d9d7cbded7c1c1c6d7d1da9cdcd7c6"><span class="__cf_email__" data-cfemail="e49d838b96a48f819d888197979081878cca8a8190">[email&#160;protected]</span></a> directly.</p>
+</div>
+</section>
+
+<footer><div class="fr"><span>Keyless Technologies LLC</span><span>Patent Pending &middot; USPTO #64/018,898</span><a href="https://keyless-4bzs.onrender.com/privacy">Privacy Policy</a></div><p class="fb">Clermont, FL &middot; keylesstech.net</p></footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var ob=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');en.target.querySelectorAll('[data-count]').forEach(animateCount)}})},{threshold:.15,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv,.rl').forEach(function(el){ob.observe(el)});
+
+function animateCount(el){
+if(el.dataset.done)return;el.dataset.done='1';
+var type=el.dataset.count,target=parseFloat(el.dataset.target),dur=2000,start=performance.now();
+function ease(p){return 1-Math.pow(1-p,3)}
+function tick(now){
+var p=Math.min((now-start)/dur,1),v=target*ease(p);
+if(type==='time'){var s=Math.floor(v);el.textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+else if(type==='decimal'){el.textContent=v.toFixed(1)+' hrs'}
+else if(type==='money'){el.textContent='$'+Math.floor(v).toLocaleString()}
+if(p<1)requestAnimationFrame(tick);
+else{if(type==='time')el.textContent='9:26';if(type==='decimal')el.textContent='3.2 hrs';if(type==='money')el.textContent='$49,400'}
+}requestAnimationFrame(tick)}
+
+var demoUrl='mailto:ygor@keylesstech.net?subject=Keyless%20Demo%20Request&body=I%27m%20interested%20in%20scheduling%20a%20demo%20of%20Keyless%20for%20my%20dealership.';
+
+function playConfirm(){
+try{var c=new(window.AudioContext||window.webkitAudioContext)();
+var o=c.createOscillator(),g=c.createGain();
+o.type='triangle';o.frequency.setValueAtTime(1800,c.currentTime);o.frequency.exponentialRampToValueAtTime(1200,c.currentTime+.06);
+g.gain.setValueAtTime(.13,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.1);
+o.connect(g);g.connect(c.destination);o.start(c.currentTime);o.stop(c.currentTime+.1);
+}catch(e){}}
+
+document.querySelectorAll('.cta-trigger').forEach(function(b){
+b.addEventListener('click',function(e){
+e.preventDefault();playConfirm();
+this.style.transition='box-shadow .15s,transform .15s';
+this.style.boxShadow='0 0 40px rgba(0,228,184,.6),0 0 80px rgba(0,228,184,.25),inset 0 0 20px rgba(0,228,184,.15)';
