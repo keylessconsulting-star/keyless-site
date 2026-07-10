@@ -90,6 +90,15 @@ section{padding:120px 24px;max-width:1100px;margin:0 auto}
 footer{padding:40px 24px;text-align:center;border-top:1px solid var(--border);max-width:1100px;margin:0 auto}
 .fr{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-size:13px;color:var(--td);font-family:var(--m);letter-spacing:.5px}
 .fr a{color:var(--td);text-decoration:none;transition:color .2s}.fr a:hover{color:var(--accent)}
+.lf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left;margin-bottom:12px}
+.lf-in{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--t);font-family:var(--f);font-size:15px;width:100%;outline:none;transition:border-color .2s}
+.lf-in:focus{border-color:var(--accent)}
+.lf-in::placeholder{color:var(--td)}
+select.lf-in{appearance:none;color:var(--ts)}
+.lf-msg{margin-bottom:20px;resize:vertical;text-align:left}
+.lf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#lead-form button[disabled]{opacity:.6;animation:none}
+@media(max-width:768px){.lf-grid{grid-template-columns:1fr}}
 .fb{margin-top:16px;font-size:12px;color:var(--td)}
 .dv{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);max-width:1100px;margin:0 auto}
 @media(max-width:768px){
@@ -183,12 +192,23 @@ section{padding:80px 20px}.sg{grid-template-columns:1fr;gap:16px}.sc{padding:32p
 </section>
 <div class="dv"></div>
 
-<section style="padding-bottom:40px">
+<section style="padding-bottom:40px" id="request">
 <div class="cs rv">
 <h2>Ready to See It in Action?</h2>
 <p class="of">20 lockboxes. 30 days free. Zero risk.</p>
-<a class="cb cta-trigger">Schedule a Demo</a>
-<p class="ce">Or email <a href="mailto:ygor@keylesstech.net">ygor@keylesstech.net</a> directly.</p>
+<form id="lead-form" autocomplete="on">
+<div class="lf-grid">
+<input class="lf-in" name="dealership_name" placeholder="Dealership name *" maxlength="120" required>
+<input class="lf-in" name="contact_name" placeholder="Your name *" maxlength="120" required>
+<input class="lf-in" name="email" type="email" placeholder="Work email *" maxlength="254" required>
+<input class="lf-in" name="phone" type="tel" placeholder="Phone" maxlength="40">
+<select class="lf-in" name="fleet_size"><option value="">Vehicles on lot</option><option>Under 50</option><option>50–150</option><option>150–400</option><option>400+</option><option>Multi-store group</option></select>
+<input class="lf-in lf-hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+</div>
+<textarea class="lf-in lf-msg" name="message" placeholder="Anything we should know? (optional)" maxlength="2000" rows="3"></textarea>
+<button class="cb" type="submit" id="lead-submit">Request a Demo</button>
+<p class="ce" id="lead-status">Every dealership is personally verified before activation. Or email <a href="mailto:ygor@keylesstech.net">ygor@keylesstech.net</a> directly.</p>
+</form>
 </div>
 </section>
 
@@ -213,7 +233,7 @@ if(p<1)requestAnimationFrame(tick);
 else if(fin){el.textContent=fin}
 }requestAnimationFrame(tick)}
 
-var demoUrl='mailto:ygor@keylesstech.net?subject=Keyless%20Demo%20Request&body=I%27m%20interested%20in%20scheduling%20a%20demo%20of%20Keyless%20for%20my%20dealership.';
+var API_LEADS='https://keyless-4bzs.onrender.com/api/leads';
 
 function playConfirm(){
 try{var c=new(window.AudioContext||window.webkitAudioContext)();
@@ -229,8 +249,28 @@ e.preventDefault();playConfirm();
 this.style.transition='box-shadow .15s,transform .15s';
 this.style.boxShadow='0 0 40px rgba(0,228,184,.6),0 0 80px rgba(0,228,184,.25),inset 0 0 20px rgba(0,228,184,.15)';
 var self=this;
-setTimeout(function(){self.style.boxShadow='';window.location.href=demoUrl},180);
+setTimeout(function(){self.style.boxShadow='';
+document.getElementById('request').scrollIntoView({behavior:'smooth'});
+setTimeout(function(){var f=document.querySelector('#lead-form input[name=dealership_name]');if(f)f.focus({preventScroll:true})},700);
+},180);
 });
+});
+
+document.getElementById('lead-form').addEventListener('submit',function(e){
+e.preventDefault();
+var form=this,btn=document.getElementById('lead-submit'),status=document.getElementById('lead-status');
+var data={};new FormData(form).forEach(function(v,k){data[k]=v});
+btn.disabled=true;btn.textContent='Sending…';
+fetch(API_LEADS,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+.then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})})
+.then(function(res){
+if(res.ok){playConfirm();form.reset();btn.textContent='Request Received ✓';
+status.textContent='Got it. We personally verify every dealership — expect a call or email from Ygor within one business day.';}
+else{btn.disabled=false;btn.textContent='Request a Demo';
+status.textContent=(res.j&&res.j.error)||'Something went wrong — email ygor@keylesstech.net directly.';}
+})
+.catch(function(){btn.disabled=false;btn.textContent='Request a Demo';
+status.textContent='Could not reach the server — email ygor@keylesstech.net directly.';});
 });
 </script>
 </body>
