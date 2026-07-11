@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Privacy Policy — Keyless</title>
+<style>
+:root{--bg:#06080F;--card:#111827;--accent:#00E4B8;--t:#F0F2F5;--ts:#7A8BA7;--td:#3A4A5C;--border:#1E293B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.7;padding:0 24px 80px}
+.wrap{max-width:760px;margin:0 auto}
+header{padding:28px 0;border-bottom:1px solid var(--border);margin-bottom:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-family:ui-monospace,monospace;font-weight:700;letter-spacing:3px;font-size:16px}.logo span{color:var(--accent)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.draft{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);color:#F5A623;font-size:13px;padding:12px 16px;border-radius:10px;margin:20px 0 32px}
+.updated{color:var(--td);font-size:13px;font-family:ui-monospace,monospace;margin-bottom:32px}
+h2{font-size:19px;font-weight:700;margin:36px 0 12px;color:var(--t)}
+p,li{color:var(--ts);font-size:15px;margin-bottom:12px}
+ul{padding-left:22px;margin-bottom:12px}
+li{margin-bottom:8px}
+strong{color:var(--t)}
+footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--border);font-size:13px;color:var(--td);font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="logo">KEYLESS<span>.</span></div>
+  <a href="/">← Back to site</a>
+</header>
+
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: July 2026</p>
+<div class="draft">DRAFT for attorney review — not yet legally operative. Placeholder pending counsel sign-off before go-live.</div>
+
+<p>Keyless Technologies LLC ("Keyless", "we", "us") provides a smart key-access platform to automobile dealerships. This policy explains what we collect, why, and your choices. It covers our website, dealer portal, mobile app, and lockbox hardware.</p>
+
+<h2>Who our users are</h2>
+<p>Keyless is a business-to-business service. Our direct users are <strong>dealership staff</strong> (owners, general managers, managers, salespeople, porters) and dealership customers whose limited information a salesperson may record for a test drive. We do not sell a consumer product or run consumer accounts.</p>
+
+<h2>What we collect</h2>
+<ul>
+<li><strong>Dealership &amp; staff data:</strong> business name, address, staff names, work emails, roles, and authentication data. Passwords are stored only as salted hashes; we never see them. Two-factor secrets are encrypted at rest.</li>
+<li><strong>Access &amp; audit events:</strong> which staff member unlocked which lockbox, when, and from where (app session). This audit trail is the core of the product.</li>
+<li><strong>Vehicle &amp; lockbox data:</strong> inventory details, lockbox status, battery, and — on GPS-equipped lockboxes — location during active test drives.</li>
+<li><strong>Test-drive customer data:</strong> at the dealership's direction, a salesperson may record a customer's <strong>name, phone, and optional email</strong> for a test drive. <strong>We do not collect or scan driver's licenses.</strong></li>
+<li><strong>Website requests:</strong> if you request a demo, the business and contact details you submit, plus basic technical data (IP, browser) for security.</li>
+</ul>
+
+<h2>What we do NOT do</h2>
+<ul>
+<li>We do not sell personal information.</li>
+<li>We do not store payment card or bank-account numbers — payments are processed by Stripe; card/bank data goes to Stripe, not to us.</li>
+<li>We do not capture, photograph, or store government-issued identification.</li>
+</ul>
+
+<h2>How we use data</h2>
+<p>To operate the platform: authenticate users, authorize and record lockbox access, show fleet status, generate reports, detect and escalate security anomalies (for example, an unlock attempt from an unauthorized surface), and support the dealership. With a dealership's consent, we may pass agreed data to their DMS/CRM to enrich their own records.</p>
+
+<h2>How we protect it</h2>
+<ul>
+<li>Encryption in transit (TLS) and at rest for sensitive fields; per-lockbox keys are encrypted and never leave our backend.</li>
+<li>Tenant isolation — each dealership's data is scoped to that dealership.</li>
+<li>Role-based access, two-factor authentication, rate limiting, brute-force lockout, and a tamper-evident audit log.</li>
+<li>A web-application firewall and DDoS protection at the edge.</li>
+</ul>
+
+<h2>Data ownership &amp; retention</h2>
+<p>A dealership's operational data belongs to that dealership. It is exportable at any time, and we return or delete it on request when an agreement ends, subject to legal retention obligations.</p>
+
+<h2>Your choices</h2>
+<p>Dealership administrators manage their staff accounts and can request access, correction, export, or deletion of data by contacting us. A test-drive customer who wants their recorded contact information removed can ask the dealership or email us directly.</p>
+
+<h2>Contact</h2>
+<p>Keyless Technologies LLC — <a href="mailto:ygor@keylesstech.net">ygor@keylesstech.net</a> · Orlando, FL</p>
+
+<footer>Keyless Technologies LLC · Patent Pending USPTO #64/018,898 · <a href="/terms.html">Terms of Service</a></footer>
+</div>
+</body>
+</html>
